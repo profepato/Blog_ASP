@@ -11,6 +11,7 @@ namespace Blog_ASP.Model {
         private String apellidoMaterno;
         private String nickname;
         private String password;
+        private String correo;
 
         public string Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
@@ -18,5 +19,6 @@ namespace Blog_ASP.Model {
         public string ApellidoMaterno { get => apellidoMaterno; set => apellidoMaterno = value; }
         public string Nickname { get => nickname; set => nickname = value; }
         public string Password { get => password; set => password = value; }
+        public string Correo { get => correo; set => correo = value; }
     }
 }

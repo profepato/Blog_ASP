@@ -10,6 +10,7 @@ CREATE TABLE usuario(
 	apellido_materno VARCHAR(100),
 	nickname VARCHAR(100),
 	password VARCHAR(100),
+	correo VARCHAR(100),
 	PRIMARY KEY(id)
 );
 
@@ -53,7 +54,8 @@ INSERT INTO usuario VALUES(
 	'Pérez',
 	'Pinto',
 	'prez',
-	'111'
+	'111',
+	'prez@gmail.com'
 );
 
 INSERT INTO usuario VALUES(
@@ -62,7 +64,8 @@ INSERT INTO usuario VALUES(
 	'Muñoz',
 	'Ampuero',
 	'fabi',
-	'222'
+	'222',
+	'fabi@gmail.com'
 );
 
 SELECT * FROM usuario;
@@ -70,3 +73,7 @@ SELECT * FROM etiqueta;
 SELECT * FROM blog;
 SELECT * FROM etiqueta_blog;
 SELECT * FROM favorito;
+
+USE master;
+GO
+DROP DATABASE blog_ASP;

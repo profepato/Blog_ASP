@@ -68,16 +68,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="View\Default.aspx" />
     <Content Include="View\Registro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ExisteHandler.ashx.cs">
+      <DependentUpon>ExisteHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Controller\IniciarSesionHandler.ashx.cs">
       <DependentUpon>IniciarSesionHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Controller\RegistrarUsuarioHandler.ashx.cs">
+      <DependentUpon>RegistrarUsuarioHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Conexion.cs" />
     <Compile Include="Model\DAO_Usuario.cs" />
+    <Compile Include="Model\Error.cs" />
     <Compile Include="Model\IDAO.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +106,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controller\IniciarSesionHandler.ashx" />
+    <Content Include="Controller\RegistrarUsuarioHandler.ashx" />
+    <Content Include="Controller\ExisteHandler.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

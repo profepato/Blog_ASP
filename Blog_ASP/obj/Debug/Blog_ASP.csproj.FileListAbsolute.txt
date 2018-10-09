@@ -51,8 +51,8 @@ C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\bin\roslyn\VBCSCompiler.exe
 C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\obj\Debug\Blog_ASP.csprojAssemblyReference.cache
 C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\obj\Debug\Blog_ASP.csproj.CoreCompileInputs.cache
 C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\obj\Debug\Blog_ASP.csproj.CopyComplete
 C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\obj\Debug\Blog_ASP.dll
 C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\obj\Debug\Blog_ASP.pdb
+C:\Users\PREZ\source\repos\Blog_ASP\Blog_ASP\obj\Debug\Blog_ASP.csprojAssemblyReference.cache

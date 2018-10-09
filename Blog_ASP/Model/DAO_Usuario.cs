@@ -16,7 +16,8 @@ namespace Blog_ASP.Model {
                 "'"+ob.ApellidoPaterno+"'," +
                 "'"+ob.ApellidoMaterno+"'," +
                 "'"+ob.Nickname+"'," +
-                "'"+ob.Password+"')");
+                "'"+ob.Password+"', " +
+                "'"+ob.Correo+"')");
         }
 
         public void Delete(object id) {
@@ -46,6 +47,18 @@ namespace Blog_ASP.Model {
         
         public void Update(Usuario ob) {
             Ejecutar("UPDATE usuario SET password = '"+ob.Password+"', nickname = '"+ob.Nickname+"' WHERE id = '"+ob.Id+"'");
+        }
+
+        public Boolean IsCorreo(String correo) {
+            DataTable dt = Ejecutar("SELECT * FROM usuario WHERE correo = '"+correo+"'");
+
+            return dt.Rows.Count != 0;
+        }
+
+        public Boolean IsNick(String nick) {
+            DataTable dt = Ejecutar("SELECT * FROM usuario WHERE nickname = '" + nick + "'");
+
+            return dt.Rows.Count != 0;
         }
     }
 }
