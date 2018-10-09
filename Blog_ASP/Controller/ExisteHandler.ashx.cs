@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using Blog_ASP.Model;
+using Blog_ASP.Model.DAO;
 
 namespace Blog_ASP.Controller {
     /// <summary>

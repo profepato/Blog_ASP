@@ -5,7 +5,7 @@ using System.Web;
 
 using System.Data;
 
-namespace Blog_ASP.Model {
+namespace Blog_ASP.Model.DAO {
     public class DAO_Usuario : Conexion, IDAO<Usuario> {
         public DAO_Usuario() : base("blog_ASP") {
         }
@@ -40,7 +40,7 @@ namespace Blog_ASP.Model {
 
                 lista.Add(usu);
             }
-
+            Cerrar();
             return lista;
         }
 
@@ -51,14 +51,35 @@ namespace Blog_ASP.Model {
 
         public Boolean IsCorreo(String correo) {
             DataTable dt = Ejecutar("SELECT * FROM usuario WHERE correo = '"+correo+"'");
-
+            Cerrar();
             return dt.Rows.Count != 0;
         }
 
         public Boolean IsNick(String nick) {
             DataTable dt = Ejecutar("SELECT * FROM usuario WHERE nickname = '" + nick + "'");
-
+            Cerrar();
             return dt.Rows.Count != 0;
+        }
+
+        public Usuario GetUsuario(String nickCorreo, String pass) {
+            Usuario usu = null;
+            DataTable dt = Ejecutar("SELECT * FROM usuario " +
+                "WHERE (correo = '"+ nickCorreo + "' OR nickname = '"+ nickCorreo + "') " +
+                "AND password = ''");
+
+            if (dt.Rows.Count != 0) {
+                usu = new Usuario();
+
+                usu.Id = dt.Rows[0][0].ToString();
+                usu.Nombre = dt.Rows[0][1].ToString();
+                usu.ApellidoPaterno = dt.Rows[0][2].ToString();
+                usu.ApellidoMaterno = dt.Rows[0][3].ToString();
+                usu.Nickname = dt.Rows[0][4].ToString();
+            }
+
+            Cerrar();
+
+            return usu;
         }
     }
 }

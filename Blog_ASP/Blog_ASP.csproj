@@ -70,6 +70,7 @@
   <ItemGroup>
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="View\Default.aspx" />
+    <Content Include="View\Error.aspx" />
     <Content Include="View\Registro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -84,9 +85,9 @@
       <DependentUpon>RegistrarUsuarioHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Model\Conexion.cs" />
-    <Compile Include="Model\DAO_Usuario.cs" />
+    <Compile Include="Model\DAO\DAO_Usuario.cs" />
     <Compile Include="Model\Error.cs" />
-    <Compile Include="Model\IDAO.cs" />
+    <Compile Include="Model\DAO\IDAO.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Default.aspx.cs">
@@ -95,6 +96,13 @@
     </Compile>
     <Compile Include="View\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>

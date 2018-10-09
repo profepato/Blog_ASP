@@ -20,7 +20,7 @@
         <h1>Bienvenid@s al blog!</h1>
         <form action="../Controller/IniciarSesionHandler.ashx" method="post">
             <input type="text" name="correo" placeholder="Correo ó nick:" value="<%=(nick != null ? nick:"") %>"/>
-            <input type="text" name="pass" placeholder="Password"/>
+            <input type="password" name="pass" placeholder="Password"/>
             <input type="submit" value="Entrar"/>
         </form>
         <a href="Registro.aspx">Registrarse</a>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog_ASP.Model {
+namespace Blog_ASP.Model.DAO {
     interface IDAO<T> {
         void Create(T ob);
         List<T> Read();

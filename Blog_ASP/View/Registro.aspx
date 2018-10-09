@@ -2,6 +2,19 @@
 
 <!DOCTYPE html>
 
+<%
+    String nick = null;
+    String correo = null;
+
+    if (Session["nick"] != null) {
+        nick = Session["nick"].ToString();
+        Session.Clear();
+    }else if (Session["correo"] != null) {
+        correo = Session["correo"].ToString();
+        Session.Clear();
+    }
+%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -74,16 +87,53 @@
     <body onload="$('#btnRegistrar').attr('disabled', true);">
         <h1>Registro</h1>
         <form action="../Controller/RegistrarUsuarioHandler.ashx" method="post">
-            <input required="required" type="text"      id="nick" name="nick"        placeholder="Nick:" onfocusout="existeNick()"/>
-            <span id="menNick"></span>
-            <input required="required" type="text"      name="nombre"                placeholder="Nombre:"/>
-            <input required="required" type="text"      name="apPaterno"             placeholder="Apellido Paterno:"/>
-            <input required="required" type="text"      name="apMaterno"             placeholder="Apellido Materno:"/>
-            <input required="required" type="text"      id="correo" name="correo"    placeholder="Correo:" onfocusout="existeCorreo()"/>
-            <span id="menCorreo"></span>
-            <input required="required" type="password"  name="pass"                  placeholder="Password:"/>
-
-            <input id="btnRegistrar" type="submit" value="Registrarse"/>
+            <input 
+                required="required" 
+                type="text"      
+                id="nick" 
+                name="nick"        
+                placeholder="Nick:" 
+                onfocusout="existeNick()"
+                value="<%=(nick != null ? nick: "") %>"
+            /><span id="menNick"></span>
+            <input 
+                required="required" 
+                type="text"      
+                name="nombre"                
+                placeholder="Nombre:"
+            />
+            <input 
+                required="required" 
+                type="text"      
+                name="apPaterno"             
+                placeholder="Apellido Paterno:"
+            />
+            <input 
+                required="required" 
+                type="text"      
+                name="apMaterno"             
+                placeholder="Apellido Materno:"
+            />
+            <input 
+                required="required" 
+                type="text"      
+                id="correo" 
+                name="correo"    
+                placeholder="Correo:" 
+                onfocusout="existeCorreo()"
+                value="<%=(correo != null ? correo: "") %>"
+            /><span id="menCorreo"></span>
+            <input 
+                required="required" 
+                type="password"  
+                name="pass"                  
+                placeholder="Password:"
+            />
+            <input 
+                id="btnRegistrar" 
+                type="submit" 
+                value="Registrarse"
+            />
         </form>
         <a href="Default.aspx">Volver</a>
     </body>
