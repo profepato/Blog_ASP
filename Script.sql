@@ -56,6 +56,15 @@ INSERT INTO usuario VALUES(
 	'111'
 );
 
+INSERT INTO usuario VALUES(
+	NEWID(),
+	'Fabiola',
+	'Muñoz',
+	'Ampuero',
+	'fabi',
+	'222'
+);
+
 SELECT * FROM usuario;
 SELECT * FROM etiqueta;
 SELECT * FROM blog;
