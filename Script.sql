@@ -84,4 +84,4 @@ DROP DATABASE blog_ASP;
 
 SELECT getdate() ;
 
-SELECT id FROM blog ORDER BY fecha DESC
+SELECT MAX(id) FROM blog;

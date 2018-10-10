@@ -35,5 +35,33 @@ namespace Blog_ASP.Model.DAO {
         public void Update(Blog ob) {
             throw new NotImplementedException();
         }
+
+        public List<Blog> Read(String userId) {
+            List<Blog> lista = new List<Blog>();
+            DataTable dt = Ejecutar(
+                "SELECT id, titulo, texto, fecha " +
+                "FROM blog " +
+                "WHERE usuario = '"+userId+"' " +
+                "ORDER BY fecha DESC"
+            );
+
+            Blog b;
+            DAO_Etiqueta de = new DAO_Etiqueta();
+
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                b = new Blog();
+
+                b.Id = int.Parse(dt.Rows[i][0].ToString());
+                b.Titulo = dt.Rows[i][1].ToString();
+                b.Texto = dt.Rows[i][2].ToString();
+                b.Fecha = DateTime.Parse(dt.Rows[i][3].ToString());
+
+                b.Etiquetas = de.GetEtiquetasByBlog(b.Id);
+
+                lista.Add(b);
+            }
+
+            return lista;
+        }
     }
 }

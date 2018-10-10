@@ -15,6 +15,7 @@ namespace Blog_ASP.Model.DAO{
         }
 
         public int Create(String valor) {
+            valor = valor.Trim();
             Etiqueta et = GetEtiqueta(valor);
 
             if (et == null) {
@@ -53,6 +54,28 @@ namespace Blog_ASP.Model.DAO{
             }
 
             return et;
+        }
+
+        public List<Etiqueta> GetEtiquetasByBlog(int idBlog) {
+            List<Etiqueta> lista = new List<Etiqueta>();
+
+            DataTable dt = Ejecutar("SELECT e.id, e.valor "+
+                                    "FROM etiqueta e "+
+                                    "INNER JOIN etiqueta_blog eb ON e.id = eb.etiqueta "+
+                                    "INNER JOIN blog b ON b.id = eb.blog "+
+                                    "WHERE b.id = '"+ idBlog + "'");
+            Etiqueta et;
+
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                et = new Etiqueta();
+
+                et.Id = int.Parse(dt.Rows[0][0].ToString());
+                et.Valor = dt.Rows[0][1].ToString();
+
+                lista.Add(et);
+            }
+
+            return lista;
         }
     }
 }

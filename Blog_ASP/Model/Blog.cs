@@ -10,11 +10,13 @@ namespace Blog_ASP.Model {
         private String texto;
         private String usuario;
         private DateTime fecha;
+        private List<Etiqueta> etiquetas;
 
         public int Id { get => id; set => id = value; }
         public string Titulo { get => titulo; set => titulo = value; }
         public string Texto { get => texto; set => texto = value; }
         public string Usuario { get => usuario; set => usuario = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
+        public List<Etiqueta> Etiquetas { get => etiquetas; set => etiquetas = value; }
     }
 }
