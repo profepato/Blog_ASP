@@ -1,0 +1,27 @@
+﻿.textoBlog{
+    text-align: justify;
+    
+    padding: 10px;
+}
+
+.escritoEn {
+    font-style: italic;
+    color: #848484;
+}
+
+.etiquetas {
+    color: #DF0101;
+}
+
+.blog {
+    padding: 2px 20px 20px 20px;
+    background-color: #F2F2F2;
+    margin: 10px;
+    width: 600px;
+    border-radius: 25px;
+}
+
+.blog h1{
+    padding-top: 0px;
+    font-size: 25px;
+}

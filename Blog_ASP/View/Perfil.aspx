@@ -15,6 +15,7 @@
     <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title></title>
+        <link href="../css/styles.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
         <div>
@@ -37,16 +38,18 @@
                 DAO_Blog db = new DAO_Blog();
 
                 foreach (Blog b in db.Read(user.Id)) {
-                    Response.Write("<h3>"+b.Titulo+"</h3>");
-                    Response.Write("Escrito el "+b.Fecha);
-                    Response.Write("<div id='texto'>");
-                    Response.Write(b.Texto);
-                    Response.Write("</div>");
+                    Response.Write("<div class='blog'>");
+                        Response.Write("<h1>"+b.Titulo+"</h1>");
+                        Response.Write("<div class='escritoEn'>Escrito el "+b.Fecha+". @"+user.Nickname+" dijo:</div>");
+                        Response.Write("<div class='textoBlog'>");
+                            Response.Write(b.Texto);
+                        Response.Write("</div>");
 
-                    Response.Write("<div id='etiquetas'>Etiquetas: ");
-                    foreach (Etiqueta et in b.Etiquetas) {
-                        Response.Write("#"+et.Valor+", ");
-                    }
+                        Response.Write("<div class='etiquetas'>Etiquetas: ");
+                        foreach (Etiqueta et in b.Etiquetas) {
+                            Response.Write("#"+et.Valor+", ");
+                        }
+                        Response.Write("</div>");
                     Response.Write("</div>");
                 }
             %>

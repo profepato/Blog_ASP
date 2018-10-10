@@ -11,6 +11,7 @@ namespace Blog_ASP.Model.DAO {
         }
 
         public String CreateBlog(Blog ob) {
+            ob.Texto = ob.Texto.Replace("'", "''");
             Ejecutar("INSERT INTO blog" +
                 "(titulo, texto, usuario, fecha) " +
                 "VALUES('"+ob.Titulo+"','"+ob.Texto+"','"+ob.Usuario+"',getdate())");

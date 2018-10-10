@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\styles.css" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="View\Default.aspx" />
     <Content Include="View\Perfil.aspx" />

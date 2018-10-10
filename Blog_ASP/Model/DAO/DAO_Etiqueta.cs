@@ -69,8 +69,8 @@ namespace Blog_ASP.Model.DAO{
             for (int i = 0; i < dt.Rows.Count; i++) {
                 et = new Etiqueta();
 
-                et.Id = int.Parse(dt.Rows[0][0].ToString());
-                et.Valor = dt.Rows[0][1].ToString();
+                et.Id = int.Parse(dt.Rows[i][0].ToString());
+                et.Valor = dt.Rows[i][1].ToString();
 
                 lista.Add(et);
             }
