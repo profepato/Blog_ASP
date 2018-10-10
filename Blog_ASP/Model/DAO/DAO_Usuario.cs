@@ -37,10 +37,10 @@ namespace Blog_ASP.Model.DAO {
                 usu.ApellidoMaterno = dt.Rows[i][3].ToString();
                 usu.Nickname = dt.Rows[i][4].ToString();
                 usu.Password = dt.Rows[i][5].ToString();
+                usu.Correo = dt.Rows[i][6].ToString();
 
                 lista.Add(usu);
             }
-            Cerrar();
             return lista;
         }
 
@@ -51,13 +51,11 @@ namespace Blog_ASP.Model.DAO {
 
         public Boolean IsCorreo(String correo) {
             DataTable dt = Ejecutar("SELECT * FROM usuario WHERE correo = '"+correo+"'");
-            Cerrar();
             return dt.Rows.Count != 0;
         }
 
         public Boolean IsNick(String nick) {
             DataTable dt = Ejecutar("SELECT * FROM usuario WHERE nickname = '" + nick + "'");
-            Cerrar();
             return dt.Rows.Count != 0;
         }
 
@@ -65,7 +63,7 @@ namespace Blog_ASP.Model.DAO {
             Usuario usu = null;
             DataTable dt = Ejecutar("SELECT * FROM usuario " +
                 "WHERE (correo = '"+ nickCorreo + "' OR nickname = '"+ nickCorreo + "') " +
-                "AND password = ''");
+                "AND password = '"+pass+"'");
 
             if (dt.Rows.Count != 0) {
                 usu = new Usuario();
@@ -75,9 +73,8 @@ namespace Blog_ASP.Model.DAO {
                 usu.ApellidoPaterno = dt.Rows[0][2].ToString();
                 usu.ApellidoMaterno = dt.Rows[0][3].ToString();
                 usu.Nickname = dt.Rows[0][4].ToString();
+                usu.Correo = dt.Rows[0][6].ToString();
             }
-
-            Cerrar();
 
             return usu;
         }

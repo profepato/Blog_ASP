@@ -21,7 +21,7 @@ CREATE TABLE etiqueta(
 );
 
 CREATE TABLE blog(
-	id UNIQUEIDENTIFIER,
+	id INT IDENTITY(1,1),
 	titulo VARCHAR(100),
 	texto VARCHAR(8000),
 	usuario UNIQUEIDENTIFIER,
@@ -33,7 +33,7 @@ CREATE TABLE blog(
 CREATE TABLE etiqueta_blog(
 	id INT IDENTITY(1,1),
 	etiqueta INT,
-	blog UNIQUEIDENTIFIER,
+	blog INT,
 	PRIMARY KEY(id),
 	FOREIGN KEY(etiqueta) REFERENCES etiqueta(id),
 	FOREIGN KEY(blog) REFERENCES blog(id)
@@ -68,12 +68,20 @@ INSERT INTO usuario VALUES(
 	'fabi@gmail.com'
 );
 
+INSERT INTO etiqueta(valor) VALUES('Chile');
+
 SELECT * FROM usuario;
 SELECT * FROM etiqueta;
 SELECT * FROM blog;
 SELECT * FROM etiqueta_blog;
 SELECT * FROM favorito;
 
+DELETE FROM usuario;
+
 USE master;
 GO
 DROP DATABASE blog_ASP;
+
+SELECT getdate() ;
+
+SELECT id FROM blog ORDER BY fecha DESC

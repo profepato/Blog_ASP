@@ -20,5 +20,9 @@ namespace Blog_ASP.Model {
         public string Nickname { get => nickname; set => nickname = value; }
         public string Password { get => password; set => password = value; }
         public string Correo { get => correo; set => correo = value; }
+
+        public String GetNombreCompleto() {
+            return this.nombre + " " + apellidoPaterno + " " + apellidoMaterno; 
+        }
     }
 }

@@ -21,7 +21,9 @@ namespace Blog_ASP.Controller {
             if (usu != null) {
                 // sesión ok
                 context.Session["user"] = usu;
+                context.Response.Redirect("../View/Perfil.aspx");
             } else {
+                // el usuario esta null, no existe o clave mala
                 if (nickCorreo.Contains("@")) {
                     if (!du.IsCorreo(nickCorreo)) {
                         // lo envío a registrar
@@ -32,6 +34,9 @@ namespace Blog_ASP.Controller {
                     // lo envío a registrar
                     context.Session["nick"] = nickCorreo;
                     context.Response.Redirect("../View/Registro.aspx");
+                } else {
+                    context.Session["mensajeError"] = "Error al iniciar sesión. Revise sus datos";
+                    context.Response.Redirect("../View/Default.aspx");
                 }
             }
 

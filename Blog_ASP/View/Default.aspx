@@ -4,8 +4,13 @@
 
 <%
     String nick = null;
+    String mensajeError = null;
+
     if (Session["usuario"] != null) {
         nick = ((Usuario)Session["usuario"]).Nickname;
+        Session.Clear();
+    }else if (Session["mensajeError"] != null) {
+        mensajeError = Session["mensajeError"].ToString();
         Session.Clear();
     }
 %>
@@ -24,5 +29,8 @@
             <input type="submit" value="Entrar"/>
         </form>
         <a href="Registro.aspx">Registrarse</a>
+        <div>
+            <%=(mensajeError != null ? mensajeError: "") %>
+        </div>
     </body>
 </html>
