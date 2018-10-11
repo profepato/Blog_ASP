@@ -11,6 +11,7 @@ CREATE TABLE usuario(
 	nickname VARCHAR(100),
 	password VARCHAR(100),
 	correo VARCHAR(100),
+	nacimiento DATE,
 	PRIMARY KEY(id)
 );
 
@@ -55,7 +56,8 @@ INSERT INTO usuario VALUES(
 	'Pinto',
 	'prez',
 	'111',
-	'prez@gmail.com'
+	'prez@gmail.com',
+	'07-09-1988'
 );
 
 INSERT INTO usuario VALUES(
@@ -65,7 +67,8 @@ INSERT INTO usuario VALUES(
 	'Ampuero',
 	'fabi',
 	'222',
-	'fabi@gmail.com'
+	'fabi@gmail.com',
+	'25-05-1987'
 );
 
 INSERT INTO etiqueta(valor) VALUES('Chile');
@@ -85,3 +88,17 @@ DROP DATABASE blog_ASP;
 SELECT getdate() ;
 
 SELECT MAX(id) FROM blog;
+
+SELECT e.id, e.valor
+FROM etiqueta e
+INNER JOIN etiqueta_blog eb ON e.id = eb.etiqueta
+INNER JOIN blog b ON b.id = eb.blog
+WHERE b.id = '2';
+
+
+-- Calculo de edad
+SELECT (CAST(DATEDIFF(dd,(
+	SELECT nacimiento
+	FROM usuario
+	WHERE id = ''
+),GETDATE()) / 365.25 as int))

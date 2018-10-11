@@ -18,41 +18,50 @@
         <link href="../css/styles.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
-        <div>
-            <h1><%=user.GetNombreCompleto() %></h1>
-            <div>@<%=user.Nickname %></div>
-            <div><%=user.Correo %></div>
-            <a href="../Controller/CerrarSesionHandler.ashx">Cerrar sesión</a>
-        </div>
-        <div id="creacionDeBlog">
-            <form action="../Controller/CrearBlogHandler.ashx" method="post">
-                <input type="hidden" name="usuario" value="<%=user.Id %>"/>
-                <input type="text" name="titulo" placeholder="Título"/>
-                <textarea name="blog"></textarea>
-                <input type="text" name="etiquetas" placeholder="Etiquetas"/>
-                <input type="submit" value="Crear Blog" />
-            </form>
-        </div>
-        <div id="listadoBlogs">
-            <% 
-                DAO_Blog db = new DAO_Blog();
+        <div id="content">
+            <div id="infoUsuario">
+                <div id="nombreCompletoUsuario"><%=user.GetNombreCompleto() %></div>
+                <div id="nickname">@<%=user.Nickname %></div>
+                <!--<div><%=user.Correo %></div>-->
+                <div id="anios"><%=user.Anios %> años</div>
+                <a href="../Controller/CerrarSesionHandler.ashx">Cerrar sesión</a>
+            </div>
+            <div id="creacionDeBlog">
+                <form action="../Controller/CrearBlogHandler.ashx" method="post">
+                    <input type="hidden" name="usuario" value="<%=user.Id %>"/>
+                    <input id="tituloBlogCreacion" type="text" name="titulo" placeholder="Título"/>
+                    <textarea id="blogCreacion" name="blog"></textarea>
+                    <input id="etiquetasCreacion" type="text" name="etiquetas" placeholder="Etiquetas"/>
+                    <input type="submit" value="Crear Blog" />
+                </form>
+            </div>
+            <div id="listadoBlogs">
+                <% 
+                    DAO_Blog db = new DAO_Blog();
 
-                foreach (Blog b in db.Read(user.Id)) {
-                    Response.Write("<div class='blog'>");
+                    foreach (Blog b in db.Read(user.Id)) {
+                        Response.Write("<div class='blog'>");
                         Response.Write("<h1>"+b.Titulo+"</h1>");
                         Response.Write("<div class='escritoEn'>Escrito el "+b.Fecha+". @"+user.Nickname+" dijo:</div>");
                         Response.Write("<div class='textoBlog'>");
-                            Response.Write(b.Texto);
+                        Response.Write(b.Texto);
                         Response.Write("</div>");
 
                         Response.Write("<div class='etiquetas'>Etiquetas: ");
+
+                        String etiquetas = "";
+
                         foreach (Etiqueta et in b.Etiquetas) {
-                            Response.Write("#"+et.Valor+", ");
+                            etiquetas += "#" + et.Valor + ", ";
                         }
+
+                        etiquetas = etiquetas.Substring(0, etiquetas.Length - 2);
+                        Response.Write(etiquetas);
                         Response.Write("</div>");
-                    Response.Write("</div>");
-                }
-            %>
+                        Response.Write("</div>");
+                    }
+                %>
+            </div>
         </div>
     </body>
 </html>

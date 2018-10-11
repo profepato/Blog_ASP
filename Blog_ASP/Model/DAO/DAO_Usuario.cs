@@ -17,7 +17,8 @@ namespace Blog_ASP.Model.DAO {
                 "'"+ob.ApellidoMaterno+"'," +
                 "'"+ob.Nickname+"'," +
                 "'"+ob.Password+"', " +
-                "'"+ob.Correo+"')");
+                "'"+ob.Correo+"', " +
+                "'"+ob.Nacimiento+"')");
         }
 
         public void Delete(object id) {
@@ -38,6 +39,8 @@ namespace Blog_ASP.Model.DAO {
                 usu.Nickname = dt.Rows[i][4].ToString();
                 usu.Password = dt.Rows[i][5].ToString();
                 usu.Correo = dt.Rows[i][6].ToString();
+                usu.Nacimiento = DateTime.Parse(dt.Rows[i][7].ToString());
+                usu.Anios = GetAnios(usu.Id);
 
                 lista.Add(usu);
             }
@@ -74,9 +77,21 @@ namespace Blog_ASP.Model.DAO {
                 usu.ApellidoMaterno = dt.Rows[0][3].ToString();
                 usu.Nickname = dt.Rows[0][4].ToString();
                 usu.Correo = dt.Rows[0][6].ToString();
+                usu.Nacimiento = DateTime.Parse(dt.Rows[0][7].ToString());
+                usu.Anios = GetAnios(usu.Id);
             }
 
             return usu;
+        }
+
+        public int GetAnios(String idUsuario) {
+            DataTable dt = Ejecutar("SELECT (CAST(DATEDIFF(dd,( "+
+                                        "SELECT nacimiento " +
+                                        "FROM usuario " +
+                                        "WHERE id = '"+ idUsuario + "' " +
+                                    "), GETDATE()) / 365.25 as int))");
+
+            return int.Parse(dt.Rows[0][0].ToString());
         }
     }
 }
