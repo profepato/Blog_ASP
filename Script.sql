@@ -102,3 +102,12 @@ SELECT (CAST(DATEDIFF(dd,(
 	FROM usuario
 	WHERE id = ''
 ),GETDATE()) / 365.25 as int))
+
+
+-- Búsqueda por #
+SELECT b.id, b.titulo, b.texto, b.fecha 
+FROM blog b
+INNER JOIN etiqueta_blog eb ON eb.blog = b.id
+INNER JOIN etiqueta e ON e.id = eb.etiqueta 
+WHERE e.valor = 'canal13' 
+ORDER BY b.titulo;

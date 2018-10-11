@@ -93,5 +93,34 @@ namespace Blog_ASP.Model.DAO {
 
             return int.Parse(dt.Rows[0][0].ToString());
         }
+
+        public List<Usuario> GetUsuario(String filtro) {
+            List<Usuario> lista = new List<Usuario>();
+            
+            DataTable dt = Ejecutar("SELECT * FROM usuario " +
+                "WHERE correo LIKE '%" + filtro + "%' OR " +
+                "nickname LIKE '%" + filtro + "%' OR " +
+                "nombre LIKE '%" + filtro + "%' OR " +
+                "apellido_paterno LIKE '%" + filtro + "%' OR " +
+                "apellido_materno LIKE '%" + filtro + "%'");
+
+            Usuario usu;
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                usu = new Usuario();
+
+                usu.Id = dt.Rows[i][0].ToString();
+                usu.Nombre = dt.Rows[i][1].ToString();
+                usu.ApellidoPaterno = dt.Rows[i][2].ToString();
+                usu.ApellidoMaterno = dt.Rows[i][3].ToString();
+                usu.Nickname = dt.Rows[i][4].ToString();
+                usu.Correo = dt.Rows[i][6].ToString();
+                usu.Nacimiento = DateTime.Parse(dt.Rows[i][7].ToString());
+                usu.Anios = GetAnios(usu.Id);
+
+                lista.Add(usu);
+            }
+
+            return lista;
+        }
     }
 }

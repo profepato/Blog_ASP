@@ -22,6 +22,7 @@ namespace Blog_ASP.Controller {
             u.Nombre            = context.Request.Params["nombre"];
             u.Password          = context.Request.Params["pass"];
             u.Correo            = context.Request.Params["correo"];
+            u.Nacimiento = DateTime.Parse(context.Request.Params["nacimiento"]);
 
             DAO_Usuario du = new DAO_Usuario();
 

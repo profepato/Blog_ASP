@@ -64,5 +64,37 @@ namespace Blog_ASP.Model.DAO {
 
             return lista;
         }
+
+        public List<Blog> ReadByTag(String valorEtiqueta) {
+            valorEtiqueta = valorEtiqueta.Replace("#", "");
+
+            List<Blog> lista = new List<Blog>();
+            DataTable dt = Ejecutar(
+                "SELECT b.id, b.titulo, b.texto, b.fecha "+
+                "FROM blog b " +
+                "INNER JOIN etiqueta_blog eb ON eb.blog = b.id " +
+                "INNER JOIN etiqueta e ON e.id = eb.etiqueta " +
+                "WHERE e.valor = '"+ valorEtiqueta + "' " +
+                "ORDER BY b.titulo"
+            );
+
+            Blog b;
+            DAO_Etiqueta de = new DAO_Etiqueta();
+
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                b = new Blog();
+
+                b.Id = int.Parse(dt.Rows[i][0].ToString());
+                b.Titulo = dt.Rows[i][1].ToString();
+                b.Texto = dt.Rows[i][2].ToString();
+                b.Fecha = DateTime.Parse(dt.Rows[i][3].ToString());
+
+                b.Etiquetas = de.GetEtiquetasByBlog(b.Id);
+
+                lista.Add(b);
+            }
+
+            return lista;
+        }
     }
 }

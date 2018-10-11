@@ -64,3 +64,8 @@ body {
     font-family: "helvetica";
     src: url("../fonts/HelveticaNeue-Roman.otf");
 }
+
+.nickEscritoEn{
+    font-weight: bold;
+    color: darkblue;
+}

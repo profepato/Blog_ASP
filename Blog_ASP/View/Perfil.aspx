@@ -19,6 +19,13 @@
     </head>
     <body>
         <div id="content">
+            <div id="divBuscar">
+                <form action="Perfil.aspx" method="post">
+                    <input type="text" placeholder="Buscar por nick, correo o #" name="filtro"/>
+                    <input type="submit" value="Buscar"/>
+                </form>
+            </div>
+
             <div id="infoUsuario">
                 <div id="nombreCompletoUsuario"><%=user.GetNombreCompleto() %></div>
                 <div id="nickname">@<%=user.Nickname %></div>
@@ -26,6 +33,7 @@
                 <div id="anios"><%=user.Anios %> años</div>
                 <a href="../Controller/CerrarSesionHandler.ashx">Cerrar sesión</a>
             </div>
+
             <div id="creacionDeBlog">
                 <form action="../Controller/CrearBlogHandler.ashx" method="post">
                     <input type="hidden" name="usuario" value="<%=user.Id %>"/>
@@ -35,6 +43,33 @@
                     <input type="submit" value="Crear Blog" />
                 </form>
             </div>
+
+            <div id="resultadosBusqueda">
+                <%
+                    if (Request.Params["filtro"] != null) {
+                        String filtro = Request.Params["filtro"].Trim();
+
+                        if (!filtro.StartsWith("#")) {
+                            DAO_Usuario du = new DAO_Usuario();
+
+                            foreach (Usuario usu in du.GetUsuario(filtro)) {
+                                Response.Write("<div>");
+                                Response.Write("<a href=''>"+usu.GetNombreCompleto()+" (@"+usu.Nickname+")</a>");
+                                Response.Write("</div>");
+                            }
+                        } else {
+                            DAO_Blog dao_blog = new DAO_Blog();
+
+                            foreach (Blog blog in dao_blog.ReadByTag(filtro)) {
+                                Response.Write("<div>");
+                                Response.Write("<a href=''>"+blog.Titulo+"</a>");
+                                Response.Write("</div>");
+                            }
+                        }
+                    }
+                    %>
+            </div>
+
             <div id="listadoBlogs">
                 <% 
                     DAO_Blog db = new DAO_Blog();
@@ -42,7 +77,7 @@
                     foreach (Blog b in db.Read(user.Id)) {
                         Response.Write("<div class='blog'>");
                         Response.Write("<h1>"+b.Titulo+"</h1>");
-                        Response.Write("<div class='escritoEn'>Escrito el "+b.Fecha+". @"+user.Nickname+" dijo:</div>");
+                        Response.Write("<div class='escritoEn'>Escrito el "+b.Fecha+". <span class='nickEscritoEn'>@"+user.Nickname+"</span> dijo:</div>");
                         Response.Write("<div class='textoBlog'>");
                         Response.Write(b.Texto);
                         Response.Write("</div>");

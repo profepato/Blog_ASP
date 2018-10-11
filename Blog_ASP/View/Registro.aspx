@@ -114,6 +114,7 @@
                 name="apMaterno"             
                 placeholder="Apellido Materno:"
             />
+
             <input 
                 required="required" 
                 type="text"      
@@ -123,12 +124,21 @@
                 onfocusout="existeCorreo()"
                 value="<%=(correo != null ? correo: "") %>"
             /><span id="menCorreo"></span>
+
             <input 
                 required="required" 
                 type="password"  
                 name="pass"                  
                 placeholder="Password:"
             />
+
+            <input 
+                required="required" 
+                type="date"  
+                name="nacimiento"                  
+                placeholder="Fecha de nacimiento:"
+            />
+
             <input 
                 id="btnRegistrar" 
                 type="submit" 
